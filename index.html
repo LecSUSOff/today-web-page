@@ -3,116 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Today — Your story, preserved.</title>
+    <title>Today | The Nostalgia Engine</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #F8F9FA; }
-        .gradient-text {
-            background: linear-gradient(to right, #3F51B5, #7986CB);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .premium-shadow { boxShadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02); }
-        .bg-indigo-premium { background: linear-gradient(135deg, #3F51B5 0%, #303F9F 100%); }
+        body { font-family: 'Inter', sans-serif; background-color: #fafafa; color: #1a1a1a; letter-spacing: -0.01em; }
+        .hero-title { letter-spacing: -0.05em; line-height: 0.85; }
+        .app-shadow { box-shadow: 0 30px 60px rgba(63, 81, 181, 0.12), 0 10px 20px rgba(0,0,0,0.05); }
+        .btn-indigo { background-color: #3F51B5; transition: all 0.2s ease; }
+        .btn-indigo:hover { background-color: #303F9F; transform: translateY(-1px); box-shadow: 0 10px 20px rgba(63, 81, 181, 0.2); }
+        .mission-badge { border: 1px solid #3F51B5; color: #3F51B5; }
+        ::selection { background: #3F51B5; color: white; }
     </style>
 </head>
-<body class="text-slate-900">
+<body class="antialiased">
 
-    <!-- Navigation -->
-    <nav class="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <div class="w-10 h-10 bg-indigo-premium rounded-xl flex items-center justify-center shadow-lg">
-                <span class="text-white font-bold text-xl">T</span>
-            </div>
-            <span class="font-extrabold text-2xl tracking-tight">Today</span>
+    <nav class="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <img src="logo.png" alt="Today Logo" class="w-7 h-7 object-contain">
+            <span class="font-bold text-lg tracking-tight">Today</span>
         </div>
-        <a href="#download" class="bg-indigo-600 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-indigo-700 transition-all text-sm">Download</a>
+        <div class="flex items-center gap-8">
+            <a href="privacy.html" class="text-sm font-medium text-neutral-400 hover:text-black transition-colors">Privacy</a>
+            <a href="app-release.apk" class="text-xs font-bold border-2 border-black px-4 py-1.5 rounded-full hover:bg-black hover:text-white transition-all uppercase tracking-tight">Download APK</a>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="max-w-6xl mx-auto px-6 pt-16 pb-24 text-center">
-        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
-            Your story starts <br><span class="gradient-text">here.</span>
-        </h1>
-        <p class="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            A beautiful, cloud-synced journal that reminds you what happened exactly one year ago. Protected by TodayID.
-        </p>
+    <main class="max-w-5xl mx-auto px-6 pt-12 md:pt-20">
         
-        <div id="download" class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a href="app-release.apk" class="w-full sm:w-auto bg-slate-900 text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-transform premium-shadow">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414L20.355 18.1734L18.845 19.6834L16.013 16.8514C15.153 17.5754 14.055 18.0134 12.855 18.0134C10.093 18.0134 7.85498 15.7754 7.85498 13.0134C7.85498 10.2514 10.093 8.01343 12.855 8.01343C15.617 8.01343 17.855 10.2514 17.855 13.0134C17.855 14.2134 17.417 15.3114 16.693 16.1714L17.523 15.3414ZM12.855 16.0134C14.5119 16.0134 15.855 14.6703 15.855 13.0134C15.855 11.3566 14.5119 10.0134 12.855 10.0134C11.1981 10.0134 9.85498 11.3566 9.85498 13.0134C9.85498 14.6703 11.1981 16.0134 12.855 16.0134Z" /></svg>
-                Download for Android
-            </a>
-            <p class="text-xs text-slate-400 max-w-[180px] text-left">v1.0.0-release<br>Includes TodayID Cloud Sync</p>
+        <!-- The Declaration -->
+        <div class="mb-8">
+            <span class="mission-badge px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest">
+                Our mission
+            </span>
+            <p class="mt-4 text-indigo-600 font-bold text-lg md:text-xl tracking-tight italic">
+                "Today, <span class="text-black">today</span> is going to reinvent your journaling experience."
+            </p>
         </div>
-    </header>
 
-    <!-- App Preview Card -->
-    <section class="max-w-4xl mx-auto px-6 pb-32">
-        <div class="bg-white p-4 rounded-[2.5rem] shadow-2xl border border-slate-100 relative overflow-hidden">
-            <!-- Replace 'app-preview.png' with a real screenshot of your app -->
-            <img src="app-preview.png" alt="App Preview" class="rounded-[2rem] w-full h-auto">
+        <!-- Hero -->
+        <div class="max-w-4xl">
+            <h1 class="hero-title text-7xl md:text-9xl font-black mb-10">
+                Your life is worth <br><span style="color: #3F51B5;">repeating.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-neutral-500 font-medium leading-tight mb-12 max-w-2xl">
+                Most journals store memories just to bury them. 
+                <span class="text-black font-semibold">Today</span> is built to resurface your past 
+                at the exact moment you need to see it.
+            </p>
             
-            <!-- Floating TodayID Badge -->
-            <div class="absolute bottom-10 right-10 bg-white/90 backdrop-blur px-6 py-4 rounded-3xl shadow-xl border border-indigo-50 flex items-center gap-4">
-                <div class="w-10 h-10 bg-amber-400 rounded-full flex items-center justify-center text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                </div>
-                <div>
-                    <p class="text-xs text-slate-400 font-bold uppercase tracking-wider">Security</p>
-                    <p class="text-sm font-bold">TodayID Verified</p>
-                </div>
+            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                <a href="app-release.apk" class="btn-indigo text-white px-10 py-5 rounded-2xl font-bold text-lg">
+                    Get the APK
+                </a>
             </div>
         </div>
-    </section>
 
-    <!-- Features -->
-    <section class="bg-white py-24">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
-            <div class="space-y-4">
-                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                </div>
-                <h3 class="text-xl font-bold">Nostalgia Engine</h3>
-                <p class="text-slate-500">Automatically resurfaces memories from 1 year ago, today. Never forget the small moments.</p>
-            </div>
-            <div class="space-y-4">
-                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                </div>
-                <h3 class="text-xl font-bold">Daily Focus</h3>
-                <p class="text-slate-500">Simple, effective goal tracking to make sure every day counts towards your story.</p>
-            </div>
-            <div class="space-y-4">
-                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
-                </div>
-                <h3 class="text-xl font-bold">Universal Sync</h3>
-                <p class="text-slate-500">Your TodayID keeps everything in sync. Switch phones without losing a single memory.</p>
+        <!-- Featured Screenshot -->
+        <div class="mt-24 md:mt-32">
+            <div class="relative w-full">
+                <img src="app-preview.png" alt="Today App Screenshot" class="app-shadow rounded-[40px] w-full max-w-4xl mx-auto border border-white">
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="max-w-6xl mx-auto px-6 py-12 text-center text-slate-400 text-sm">
-        <p>© 2026 Today Technology Co. Built with Flutter & Supabase.</p>
-        <div class="flex justify-center gap-6 mt-4">
-            <a href="privacy.html" class="hover:text-indigo-600">Privacy Policy</a>
-            <a href="mailto:support@today.me" class="hover:text-indigo-600">Support</a>
-        </div>
-    </footer>
+        <!-- Mechanics -->
+        <section class="py-32 grid md:grid-cols-2 gap-16 md:gap-32">
+            <div>
+                <h2 class="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 mb-10">The Loop</h2>
+                <div class="space-y-16">
+                    <div class="border-l-2 border-indigo-600 pl-8">
+                        <h3 class="text-2xl font-bold mb-3 tracking-tight">The 7-30-365 Recurrence</h3>
+                        <p class="text-neutral-500 leading-relaxed text-lg">
+                            Today schedules your memories to reappear exactly 7 days, 30 days, and every year later. You don't browse your history; your history finds you.
+                        </p>
+                    </div>
+                    <div class="border-l-2 border-neutral-200 pl-8">
+                        <h3 class="text-2xl font-bold mb-3 tracking-tight">Finish Day Mechanic</h3>
+                        <p class="text-neutral-500 leading-relaxed text-lg">
+                            Clear the board for tomorrow. Every night, hit "Finish Day" to wipe your current goals while preserving the memory in the cloud.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <script>
-        // Simple scroll animation for the "Download" button
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+            <div>
+                <h2 class="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 mb-10">TodayID</h2>
+                <div class="space-y-16">
+                    <div class="border-l-2 border-neutral-200 pl-8">
+                        <h3 class="text-2xl font-bold mb-3 tracking-tight">Universal Identity</h3>
+                        <p class="text-neutral-500 leading-relaxed text-lg">
+                            Your journal is encrypted and linked to your TodayID. Sign in on any phone, and your entire story pours back in instantly.
+                        </p>
+                    </div>
+                    <div class="border-l-2 border-neutral-200 pl-8">
+                        <h3 class="text-2xl font-bold mb-3 tracking-tight">Zero-Tracking</h3>
+                        <p class="text-neutral-500 leading-relaxed text-lg">
+                            No data mining, no feeds, and no advertisements. This is independent software built for people who value their time.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founder's Voice -->
+        <section class="py-24 border-t border-neutral-100">
+            <div class="max-w-2xl">
+                <p class="text-3xl font-semibold italic text-neutral-800 leading-snug">
+                    "I built Today because I wanted to stop forgetting the wins. Knowing I earned my first money on this day six months ago changes how I feel about today's work."
+                </p>
+                <div class="mt-10 flex items-center gap-4">
+                    <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">L</div>
+                    <div>
+                        <p class="font-bold text-sm">lecsusoff</p>
+                        <p class="text-xs text-neutral-400 font-medium">Lead Developer, Alexey Zukovsky</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-20 border-t border-neutral-100 flex flex-col md:flex-row justify-between items-center gap-8">
+            <p class="text-[10px] font-black text-neutral-300 uppercase tracking-[0.2em]">
+                © 2026 Today Journal • Built with Flutter & Supabase
+            </p>
+            <div class="flex gap-8">
+                <a href="mailto:lecsusoff@gmail.com" class="text-xs font-bold text-neutral-400 hover:text-indigo-600 transition-colors uppercase tracking-tight">Support</a>
+                <a href="privacy.html" class="text-xs font-bold text-neutral-400 hover:text-indigo-600 transition-colors uppercase tracking-tight">Privacy</a>
+                <a href="app-release.apk" class="text-xs font-bold text-indigo-600 underline decoration-2 underline-offset-4">Get the APK</a>
+            </div>
+        </footer>
+
+    </main>
+
 </body>
 </html>
