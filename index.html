@@ -3,229 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="page-title">Today | Reinvent Your Journaling Experience</title>
+    <title data-i18n="page-title">Today | Reinventing Your Journaling Experience</title>
     <link rel="icon" type="image/png" href="logo.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #fafafa; color: #1a1a1a; letter-spacing: -0.01em; }
+        body { font-family: 'Inter', sans-serif; background-color: #fafafa; color: #1a1a1a; letter-spacing: -0.01em; overflow-x: hidden; }
         .hero-title { letter-spacing: -0.05em; line-height: 0.85; }
-        .app-shadow { box-shadow: 0 30px 60px rgba(63, 81, 181, 0.12), 0 10px 20px rgba(0,0,0,0.05); }
         .btn-indigo { background-color: #3F51B5; transition: all 0.2s ease; }
-        .btn-indigo:hover { background-color: #303F9F; transform: translateY(-1px); box-shadow: 0 10px 20px rgba(63, 81, 181, 0.2); }
+        .btn-indigo:hover { background-color: #303F9F; transform: translateY(-1px); }
         .mission-badge { border: 1px solid #3F51B5; color: #3F51B5; }
-        ::selection { background: #3F51B5; color: white; }
         
-        /* Language Switcher Styling */
-        .lang-switch { cursor: pointer; font-size: 0.75rem; font-weight: 700; opacity: 0.5; transition: opacity 0.2s; }
-        .lang-switch:hover { opacity: 1; }
-        .lang-switch.active { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+        /* Spotlight Effect */
+        #spotlight {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999;
+            background: radial-gradient(circle 200px at var(--x) var(--y), rgba(63, 81, 181, 0.04), transparent 100%);
+        }
+
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .lang-switch { cursor: pointer; font-size: 0.75rem; font-weight: 800; opacity: 0.3; transition: all 0.2s; }
+        .lang-switch.active { opacity: 1; color: #3F51B5; }
+
+        /* Swiper Fixes */
+        .swiper { width: 100%; padding-bottom: 60px; }
+        .swiper-slide { width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
+        .app-mockup { width: 100%; height: auto; border-radius: 20px; }
     </style>
 </head>
 <body class="antialiased">
+    <div id="spotlight" class="hidden md:block"></div>
+
+    <!-- Mobile Sticky Bar -->
+    <div id="mobile-bar" class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-gray-100 p-4 flex items-center justify-between z-[100] md:hidden translate-y-full transition-transform duration-500">
+        <div class="flex items-center gap-2">
+            <img src="logo.png" class="w-6 h-6">
+            <span class="font-bold text-sm tracking-tight">Today</span>
+        </div>
+        <a href="app-release.apk" class="bg-indigo-600 text-white px-5 py-2 rounded-xl text-xs font-bold shadow-lg shadow-indigo-200">Download APK</a>
+    </div>
 
     <nav class="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
         <div class="flex items-center gap-3">
-            <img src="logo.png" alt="Today Logo" class="w-7 h-7 object-contain">
+            <img src="logo.png" alt="Today Logo" class="w-7 h-7">
             <span class="font-bold text-lg tracking-tight">Today</span>
         </div>
-        <div class="flex items-center gap-4 md:gap-8">
-            <!-- Language Toggle -->
-            <div class="flex gap-2 mr-2">
+        <div class="flex items-center gap-4">
+            <div class="flex gap-2 items-center bg-gray-100 px-3 py-1.5 rounded-full mr-2">
                 <button onclick="setLanguage('en')" id="lang-en" class="lang-switch">EN</button>
-                <span class="opacity-20">/</span>
                 <button onclick="setLanguage('ru')" id="lang-ru" class="lang-switch">RU</button>
             </div>
-            <a href="privacy.html" data-i18n="nav-privacy" class="text-sm font-medium text-neutral-400 hover:text-black transition-colors">Privacy</a>
-            <a href="app-release.apk" data-i18n="nav-download" class="text-xs font-bold border-2 border-black px-4 py-1.5 rounded-full hover:bg-black hover:text-white transition-all uppercase tracking-tight">Download APK</a>
+            <a href="privacy.html" data-i18n="nav-privacy" class="text-sm font-medium text-neutral-400 hover:text-black">Privacy</a>
         </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto px-6 pt-12 md:pt-20">
-        
-        <!-- The Declaration -->
-        <div class="mb-8">
-            <span data-i18n="mission-badge" class="mission-badge px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest">
-                Our mission
-            </span>
-            <p id="mission-text" class="mt-4 text-indigo-600 font-bold text-lg md:text-xl tracking-tight italic">
-                <!-- Content inserted by JS to handle nested spans -->
-            </p>
-        </div>
-
-        <!-- Hero -->
-        <div class="max-w-4xl">
-            <h1 id="hero-title-main" class="hero-title text-7xl md:text-9xl font-black mb-10">
-                <!-- Content inserted by JS -->
-            </h1>
-            <p id="hero-subtitle" class="text-xl md:text-2xl text-neutral-500 font-medium leading-tight mb-12 max-w-2xl">
-                <!-- Content inserted by JS -->
-            </p>
-            
-            <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-                <a href="app-release.apk" data-i18n="get-apk" class="btn-indigo text-white px-10 py-5 rounded-2xl font-bold text-lg">
-                    Get the APK
-                </a>
+    <main class="max-w-5xl mx-auto px-6">
+        <section class="reveal pt-12">
+            <div class="mb-10">
+                <span data-i18n="mission-badge" class="mission-badge px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">Mission</span>
+                <p id="mission-text" class="mt-4 text-indigo-600 font-bold text-lg md:text-2xl tracking-tight italic leading-tight"></p>
             </div>
-        </div>
+            <h1 id="hero-title-main" class="hero-title text-7xl md:text-9xl font-black mb-10"></h1>
+            <p id="hero-subtitle" class="text-xl md:text-2xl text-neutral-500 font-medium leading-tight mb-12 max-w-2xl"></p>
+            <a href="app-release.apk" data-i18n="get-apk" class="btn-indigo text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl inline-block">Get the APK</a>
+        </section>
 
-        <!-- Featured Screenshot -->
-        <div class="mt-24 md:mt-32">
-            <div class="relative w-full">
-                <img src="app-preview.png" alt="Today App Screenshot" class="app-shadow rounded-[40px] w-full max-w-4xl mx-auto border border-white">
-            </div>
-        </div>
-
-        <!-- Mechanics -->
-        <section class="py-32 grid md:grid-cols-2 gap-16 md:gap-32">
-            <div>
-                <h2 data-i18n="section-loop" class="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 mb-10">The Loop</h2>
-                <div class="space-y-16">
-                    <div class="border-l-2 border-indigo-600 pl-8">
-                        <h3 data-i18n="feat-1-title" class="text-2xl font-bold mb-3 tracking-tight">The 7-30-365 Recurrence</h3>
-                        <p data-i18n="feat-1-desc" class="text-neutral-500 leading-relaxed text-lg">
-                            Today schedules your memories to reappear exactly 7 days, 30 days, and every year later. You don't browse your history; your history finds you.
-                        </p>
-                    </div>
-                    <div class="border-l-2 border-neutral-200 pl-8">
-                        <h3 data-i18n="feat-2-title" class="text-2xl font-bold mb-3 tracking-tight">Finish Day Mechanic</h3>
-                        <p data-i18n="feat-2-desc" class="text-neutral-500 leading-relaxed text-lg">
-                            Clear the board for tomorrow. Every night, hit "Finish Day" to wipe your current goals while preserving the memory in the cloud.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <h2 data-i18n="section-id" class="text-[10px] font-black uppercase tracking-[0.3em] text-neutral-400 mb-10">TodayID</h2>
-                <div class="space-y-16">
-                    <div class="border-l-2 border-neutral-200 pl-8">
-                        <h3 data-i18n="feat-3-title" class="text-2xl font-bold mb-3 tracking-tight">Universal Identity</h3>
-                        <p data-i18n="feat-3-desc" class="text-neutral-500 leading-relaxed text-lg">
-                            Your journal is encrypted and linked to your TodayID. Sign in on any phone, and your entire story pours back in instantly.
-                        </p>
-                    </div>
-                    <div class="border-l-2 border-neutral-200 pl-8">
-                        <h3 data-i18n="feat-4-title" class="text-2xl font-bold mb-3 tracking-tight">Zero-Tracking</h3>
-                        <p data-i18n="feat-4-desc" class="text-neutral-500 leading-relaxed text-lg">
-                            No data mining, no feeds, and no advertisements. This is independent software built for people who value their time.
-                        </p>
-                    </div>
+        <section class="mt-20 overflow-hidden reveal">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="pictures/today_tab.png" class="app-mockup"></div>
+                    <div class="swiper-slide"><img src="pictures/dark_mode_today_tab.png" class="app-mockup"></div>
+                    <div class="swiper-slide"><img src="pictures/calendar_tab.png" class="app-mockup"></div>
                 </div>
             </div>
         </section>
 
-        <!-- Founder's Voice -->
-        <section class="py-24 border-t border-neutral-100">
+        <section class="py-32 grid md:grid-cols-2 gap-16 reveal border-t border-gray-100">
+            <div class="space-y-16">
+                <div class="border-l-4 border-indigo-600 pl-8">
+                    <h3 data-i18n="feat-1-title" class="text-2xl font-bold mb-3 tracking-tight"></h3>
+                    <p data-i18n="feat-1-desc" class="text-neutral-500 leading-relaxed text-lg"></p>
+                </div>
+                <div class="border-l-4 border-neutral-200 pl-8">
+                    <h3 data-i18n="feat-2-title" class="text-2xl font-bold mb-3 tracking-tight"></h3>
+                    <p data-i18n="feat-2-desc" class="text-neutral-500 leading-relaxed text-lg"></p>
+                </div>
+            </div>
+            <div class="space-y-16">
+                <div class="border-l-4 border-neutral-200 pl-8">
+                    <h3 data-i18n="feat-3-title" class="text-2xl font-bold mb-3 tracking-tight"></h3>
+                    <p data-i18n="feat-3-desc" class="text-neutral-500 leading-relaxed text-lg"></p>
+                </div>
+                <div class="border-l-4 border-neutral-200 pl-8">
+                    <h3 data-i18n="feat-4-title" class="text-2xl font-bold mb-3 tracking-tight"></h3>
+                    <p data-i18n="feat-4-desc" class="text-neutral-500 leading-relaxed text-lg"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 border-t border-neutral-100 reveal">
             <div class="max-w-2xl">
-                <p id="founder-quote" class="text-3xl font-semibold italic text-neutral-800 leading-snug">
-                    <!-- JS Insert -->
-                </p>
+                <p id="founder-quote" class="text-3xl font-semibold italic text-neutral-800 leading-snug"></p>
                 <div class="mt-10 flex items-center gap-4">
-                    <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">L</div>
+                    <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg text-lg">L</div>
                     <div>
                         <p class="font-bold text-sm">lecsusoff</p>
-                        <p data-i18n="founder-title" class="text-xs text-neutral-400 font-medium">Lead Developer, Alexey Zukovsky</p>
+                        <p data-i18n="founder-title" class="text-xs text-neutral-400 font-medium"></p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="py-20 border-t border-neutral-100 flex flex-col md:flex-row justify-between items-center gap-8">
-            <p data-i18n="footer-copy" class="text-[10px] font-black text-neutral-300 uppercase tracking-[0.2em]">
-                © 2026 Today Journal • Built with Flutter & Supabase
-            </p>
-            <div class="flex gap-8">
-                <a href="mailto:lecsusoff@gmail.com" data-i18n="foot-support" class="text-xs font-bold text-neutral-400 hover:text-indigo-600 transition-colors uppercase tracking-tight">Support</a>
-                <a href="privacy.html" data-i18n="nav-privacy" class="text-xs font-bold text-neutral-400 hover:text-indigo-600 transition-colors uppercase tracking-tight">Privacy</a>
-                <a href="app-release.apk" data-i18n="nav-download" class="text-xs font-bold text-indigo-600 underline decoration-2 underline-offset-4">Get the APK</a>
-            </div>
+        <footer class="py-20 border-t border-neutral-100 flex justify-between items-center text-[10px] font-black text-neutral-300 uppercase tracking-[0.2em]">
+            <span data-i18n="footer-copy">© 2026 Today Journal</span>
+            <a href="app-release.apk" class="text-indigo-600 underline">Get APK</a>
         </footer>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         const translations = {
             en: {
-                "page-title": "Today | Reinvent Your Journaling Experience",
+                "page-title": "Today | Reinventing Your Journaling Experience",
                 "nav-privacy": "Privacy",
-                "nav-download": "Download APK",
-                "mission-badge": "Our mission",
-                "mission-text": '"Today, <span class="text-black">today</span> is going to reinvent your journaling experience."',
+                "mission-badge": "Mission",
+                "mission-text": '"Today, <span class="text-black">today</span> will reinvent your journaling experience."',
                 "hero-title": 'Your life is worth <br><span style="color: #3F51B5;">repeating.</span>',
                 "hero-subtitle": 'Most journals store memories just to bury them. <span class="text-black font-semibold">Today</span> is built to resurface your past at the exact moment you need to see it.',
                 "get-apk": "Get the APK",
-                "section-loop": "The Loop",
-                "feat-1-title": "The 7-30-365 Recurrence",
-                "feat-1-desc": "Today schedules your memories to reappear exactly 7 days, 30 days, and every year later. You don't browse your history; your history finds you.",
-                "feat-2-title": "Finish Day Mechanic",
-                "feat-2-desc": "Clear the board for tomorrow. Every night, hit \"Finish Day\" to wipe your current goals while preserving the memory in the cloud.",
-                "section-id": "TodayID",
-                "feat-3-title": "Universal Identity",
-                "feat-3-desc": "Your journal is encrypted and linked to your TodayID. Sign in on any phone, and your entire story pours back in instantly.",
-                "feat-4-title": "Zero-Tracking",
-                "feat-4-desc": "No data mining, no feeds, and no advertisements. This is independent software built for people who value their time.",
-                "founder-quote": '"I built Today because I wanted to stop forgetting the wins. Knowing I earned my first money on this day six months ago changes how I feel about today\'s work."',
-                "founder-title": "Lead Developer, Alexey Zukovsky",
-                "footer-copy": "© 2026 Today Journal • Built with Flutter & Supabase",
-                "foot-support": "Support"
+                "feat-1-title": "The 7-30-365 Loop",
+                "feat-1-desc": "Recurrence is built in. Memories find you exactly 7 days, 30 days, and every year later.",
+                "feat-2-title": "The Clean Slate",
+                "feat-2-desc": "Wipe your daily board every night so your mind starts fresh every day.",
+                "feat-3-title": "TodayID Identity",
+                "feat-3-desc": "Encryption by default. Sign in on any phone and your history follows you instantly.",
+                "feat-4-title": "Independent Soft",
+                "feat-4-desc": "No data mining, no noise. Independent software built for people who value their time. Built by lecsusoff.",
+                "founder-quote": '"I built Today because I was tired of burying my wins in static notes. Seeing your growth recur changes your day."',
+                "founder-title": "Alexey Zukovsky, Founder",
+                "footer-copy": "© 2026 Today Journal • Flutter + Supabase"
             },
             ru: {
-                "page-title": "Today | Переосмыслите ведение дневника",
+                "page-title": "Today | Переосмысление личного дневника",
                 "nav-privacy": "Приватность",
-                "nav-download": "Скачать APK",
-                "mission-badge": "Наша миссия",
-                "mission-text": '«Сегодня <span class="text-black">today</span> переосмыслит ваш опыт ведения дневника».',
-                "hero-title": 'Ваша жизнь стоит того, <br><span style="color: #3F51B5;">чтобы её повторять.</span>',
-                "hero-subtitle": 'Большинство дневников хранят воспоминания только для того, чтобы их похоронить. <span class="text-black font-semibold">Today</span> создан для того, чтобы возвращать ваше прошлое именно тогда, когда оно вам нужно.',
+                "mission-badge": "Миссия",
+                "mission-text": '«Сегодня <span class="text-black">today</span> полностью изменит ваш подход к ведению дневника».',
+                "hero-title": 'Ваша жизнь стоит того, <br><span style="color: #3F51B5;">чтобы её помнить.</span>',
+                "hero-subtitle": 'Записи в дневниках постоянно теряются. <span class="text-black font-semibold">Today</span> выносит ваше прошлое на поверхность именно тогда, когда оно вам нужно.',
                 "get-apk": "Скачать APK",
-                "section-loop": "Петля",
-                "feat-1-title": "Повторение 7-30-365",
-                "feat-1-desc": "Today планирует появление ваших воспоминаний ровно через 7 дней, 30 дней и каждый год. Вы не листаете историю; история сама находит вас.",
-                "feat-2-title": "Механика завершения дня",
-                "feat-2-desc": "Очистите доску для завтрашнего дня. Каждый вечер нажимайте «Завершить день», чтобы стереть текущие цели, сохранив память в облаке.",
-                "section-id": "TodayID",
-                "feat-3-title": "Единый аккаунт",
-                "feat-3-desc": "Ваш дневник зашифрован и привязан к TodayID. Войдите на любом телефоне, и вся ваша история мгновенно вернется.",
-                "feat-4-title": "Никакой слежки",
-                "feat-4-desc": "Никакого сбора данных, лент новостей и рекламы. Это независимое ПО, созданное для людей, которые ценят свое время.",
-                "founder-quote": '«Я создал Today, потому что хотел перестать забывать свои победы. Знание того, что я заработал первые деньги в этот день полгода назад, меняет моё отношение к сегодняшней работе».',
-                "founder-title": "Ведущий разработчик, Алексей Жуковский",
-                "footer-copy": "© 2026 Today Journal • Создано на Flutter и Supabase",
-                "foot-support": "Поддержка"
+                "feat-1-title": "Петля 7-30-365",
+                "feat-1-desc": "Память запрограммирована вернуться через неделю, месяц и каждый год. История сама находит вас.",
+                "feat-2-title": "Чистый лист",
+                "feat-2-desc": "Стирай цели каждый вечер одной кнопкой. Утро начинается с чистого экрана.",
+                "feat-3-title": "Личность TodayID",
+                "feat-3-desc": "Мы шифруем данные на каждом этапе. Войди на любом устройстве, и вся твоя история вернется мгновенно.",
+                "feat-4-title": "Никакого мусора",
+                "feat-4-desc": "Никакой рекламы и слежки. Это софт для тех, кто ценит свое время. Сделано lecsusoff.",
+                "founder-quote": '«Я создал Today, потому что устал хоронить свои победы в обычных заметках. Повторение успехов меняет продуктивность сегодня».',
+                "founder-title": "Алексей Жуковский, Основатель",
+                "footer-copy": "© 2026 Today Journal • Flutter + Supabase"
             }
         };
 
         function setLanguage(lang) {
             localStorage.setItem('preferred-lang', lang);
-            
-            // Update simple text elements
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    el.textContent = translations[lang][key];
-                }
+                if (translations[lang][key]) el.textContent = translations[lang][key];
             });
-
-            // Update complex HTML elements
-            document.title = translations[lang]["page-title"];
             document.getElementById('mission-text').innerHTML = translations[lang]["mission-text"];
             document.getElementById('hero-title-main').innerHTML = translations[lang]["hero-title"];
             document.getElementById('hero-subtitle').innerHTML = translations[lang]["hero-subtitle"];
             document.getElementById('founder-quote').innerHTML = translations[lang]["founder-quote"];
-
-            // Update toggle UI
             document.getElementById('lang-en').classList.toggle('active', lang === 'en');
             document.getElementById('lang-ru').classList.toggle('active', lang === 'ru');
-            
-            // Update HTML lang attribute
-            document.documentElement.lang = lang;
         }
 
-        // Initialization
-        const savedLang = localStorage.getItem('preferred-lang');
-        const browserLang = navigator.language.startsWith('ru') ? 'ru' : 'en';
-        setLanguage(savedLang || browserLang);
+        const savedLang = localStorage.getItem('preferred-lang') || (navigator.language.startsWith('ru') ? 'ru' : 'en');
+        setLanguage(savedLang);
+
+        // Spotlight
+        window.addEventListener('mousemove', e => {
+            document.body.style.setProperty('--x', e.clientX + 'px');
+            document.body.style.setProperty('--y', e.clientY + 'px');
+        });
+
+        // Mobile Bar Reveal
+        window.addEventListener('scroll', () => {
+            const bar = document.getElementById('mobile-bar');
+            if (window.scrollY > 400) bar.classList.remove('translate-y-full');
+            else bar.classList.add('translate-y-full');
+        });
+
+        // Reveal Observer
+        const obs = new IntersectionObserver(ents => {
+            ents.forEach(e => { if (ents[0].isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        new Swiper(".mySwiper", { centeredSlides: true, slidesPerView: "auto", spaceBetween: 40, loop: true, grabCursor: true, autoplay: { delay: 4000 } });
     </script>
 </body>
 </html>
