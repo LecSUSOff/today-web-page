@@ -3,66 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy | Today</title>
+    <title>Privacy | Today</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #fafafa; color: #111; line-height: 1.6; }
-        .container { max-width: 650px; margin: 0 auto; padding: 60px 24px; }
-        h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 2rem; }
-        h2 { font-size: 1.25rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 1rem; color: #3F51B5; }
-        p { margin-bottom: 1.25rem; color: #444; }
-        .footer { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eee; font-size: 0.875rem; color: #999; }
+        body { font-family: 'Inter', sans-serif; background-color: #fafafa; color: #1a1a1a; line-height: 1.5; }
+        .content-box { max-width: 600px; margin: 0 auto; padding: 80px 24px; }
+        h1 { font-size: 3rem; font-weight: 900; letter-spacing: -0.05em; margin-bottom: 2rem; }
+        h2 { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 3rem; margin-bottom: 0.75rem; color: #3F51B5; }
+        p { margin-bottom: 1rem; color: #4b5563; }
+        b { color: #1a1a1a; }
+        .footer { margin-top: 5rem; font-size: 0.75rem; font-weight: 700; color: #d1d5db; text-transform: uppercase; letter-spacing: 0.1em; }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <div class="container">
-        <a href="index.html" class="text-sm font-bold text-gray-400 hover:text-black transition-colors">← Back to Today</a>
+    <div class="content-box">
+        <a href="index.html" class="text-xs font-black uppercase tracking-widest text-gray-400 hover:text-black transition-colors">← Back</a>
         
-        <h1 class="mt-8">Privacy Policy</h1>
-        <p class="text-lg font-medium text-gray-500 italic">Last updated: April 27, 2026</p>
+        <h1 class="mt-8">Privacy</h1>
+        <p class="text-sm font-bold text-gray-400 uppercase">Updated: June 20, 2026</p>
 
-        <p>I built <strong>Today</strong> because I value my own memories, and I believe your history should belong to you. This policy explains exactly what happens to your data. No hidden clauses, no data selling.</p>
+        <p class="mt-8 text-lg leading-relaxed">
+            I built <b>Today</b> because I believe your history should belong to you. I don't sell your data, I don't show you ads, and I don't track your location. This page explains exactly where your data goes.
+        </p>
 
-        <h2>1. Data We Collect</h2>
-        <p>To provide cloud sync and your TodayID profile, we collect the following:</p>
-        <ul class="list-disc ml-6 mb-4 text-gray-600">
-            <li><strong>Email Address:</strong> Used strictly for authentication and account recovery via your TodayID.</li>
-            <li><strong>Journal Content:</strong> The memories and goals you write are stored so they can resurface at the scheduled intervals (7, 30, 365 days).</li>
-            <li><strong>Profile Data:</strong> Your chosen username and profile picture.</li>
+        <h2>The TodayID</h2>
+        <p>
+            I made the <b>TodayID</b> mandatory because losing your journal is a nightmare. By creating an ID, your memories are tied to your email. If you switch phones or delete the app, your history is still safe.
+        </p>
+        <p>
+            <b>Offline-First:</b> The app stores everything on your phone first. It works perfectly without internet. When you do have a signal, it syncs your entries to the cloud so you have a backup.
+        </p>
+
+        <h2>Artificial Intelligence</h2>
+        <p>
+            I use <b>Hugging Face</b> to power features like "Voice-to-Memory" and title generation. 
+        </p>
+        <ul class="list-disc ml-5 space-y-2 text-gray-600 mb-4">
+            <li>When you record a note, the audio is sent to an API to be turned into text.</li>
+            <li>Your data is <b>processed, not stored.</b> It is used to perform the task and then it is gone.</li>
+            <li>Your entries are never used to "teach" or train global AI models.</li>
         </ul>
 
-        <h2>2. Data Storage & Security</h2>
-        <p>Your data is stored using an "Offline-First" approach. This means:</p>
-        <ul class="list-disc ml-6 mb-4 text-gray-600">
-            <li>A copy of your journal stays locally on your device (Encrypted SharedPreferences).</li>
-            <li>If you use TodayID, your data is synced to <strong>Supabase</strong> (our backend provider). Supabase uses industry-standard encryption to protect your data in transit and at rest.</li>
-        </ul>
+        <h2>Infrastructure</h2>
+        <p>
+            I use <b>Supabase</b> to handle the heavy lifting of accounts and database storage. They are industry leaders in security. Your data is encrypted while it's moving and while it's sitting on the server.
+        </p>
 
-        <h2>3. Third Parties</h2>
-        <p>We do not share your data with advertisers or brokers. We only use <strong>Supabase</strong> to provide the database and authentication infrastructure required for the app to function.</p>
-
-        <h2>4. Your Control</h2>
-        <p>You own your data. At any time, you can:</p>
-        <ul class="list-disc ml-6 mb-4 text-gray-600">
-            <li>Edit or delete any memory within the app.</li>
-            <li>Sign out to stop cloud synchronization.</li>
-            <li>Contact support to request full account and data deletion from our servers.</li>
-        </ul>
-
-        <h2>5. Children's Privacy</h2>
-        <p>Today is a 0+ rated app. It is designed for everyone. We do not knowingly target or collect data from children under 13 differently than any other user. All data is handled with the same high standard of privacy and encryption regardless of age.</p>
-
-        <h2>6. Changes to This Policy</h2>
-        <p>As the app grows, I may update this policy. If I make significant changes, I will notify you via the app or email.</p>
+        <h2>Control</h2>
+        <p>
+            You own everything you write. You can edit or delete any entry inside the app. If you want to delete your entire <b>TodayID</b> and every byte of data I have on the servers, just email me.
+        </p>
 
         <h2>Contact</h2>
-        <p>If you have any questions about your data, contact me directly at:<br>
-        <a href="mailto:hello@today.me" class="font-bold text-black border-b-2 border-indigo-200 hover:border-indigo-500 transition-all">lecsusoff@gmail.com</a></p>
+        <p>
+            I am a solo developer. If you have any questions, you can reach me directly at: 
+            <a href="mailto:lecsusoff@gmail.com" class="text-black font-bold border-b-2 border-indigo-100 hover:border-indigo-500">lecsusoff@gmail.com</a>
+        </p>
 
         <div class="footer">
-            © 2026 Today Technologies. 
+            © 2026 Today Journal • Built by lecsusoff
         </div>
     </div>
 
