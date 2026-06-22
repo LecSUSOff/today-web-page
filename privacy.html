@@ -10,7 +10,7 @@
         body { font-family: 'Inter', sans-serif; background-color: #fafafa; color: #1a1a1a; line-height: 1.5; }
         .content-box { max-width: 600px; margin: 0 auto; padding: 80px 24px; }
         h1 { font-size: 3rem; font-weight: 900; letter-spacing: -0.05em; margin-bottom: 2rem; }
-        h2 { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 3rem; margin-bottom: 0.75rem; color: #3F51B5; }
+        h2 { font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 3rem; margin-bottom: 0.75rem; color: #6366f1; }
         p { margin-bottom: 1rem; color: #4b5563; }
         b { color: #1a1a1a; }
         .footer { margin-top: 5rem; font-size: 0.75rem; font-weight: 700; color: #d1d5db; text-transform: uppercase; letter-spacing: 0.1em; }
@@ -33,33 +33,34 @@
             I made the <b>TodayID</b> mandatory because losing your journal is a nightmare. By creating an ID, your memories are tied to your email. If you switch phones or delete the app, your history is still safe.
         </p>
         <p>
-            <b>Offline-First:</b> The app stores everything on your phone first. It works perfectly without internet. When you do have a signal, it syncs your entries to the cloud so you have a backup.
+            <b>Offline-First:</b> The app stores everything on your phone first. It works perfectly without an internet connection. When you do have a signal, it syncs your entries securely to the cloud so you always have a backup.
         </p>
 
         <h2>Artificial Intelligence</h2>
         <p>
-            I use <b>Hugging Face</b> to power features like "Voice-to-Memory" and title generation. 
+            I use <b>Hugging Face</b> APIs to power features like "Voice-to-Memory" and automated title generation. 
         </p>
         <ul class="list-disc ml-5 space-y-2 text-gray-600 mb-4">
-            <li>When you record a note, the audio is sent to an API to be turned into text.</li>
-            <li>Your data is <b>processed, not stored.</b> It is used to perform the task and then it is gone.</li>
-            <li>Your entries are never used to "teach" or train global AI models.</li>
+            <li>When you record a note, the audio is securely sent to an API to be converted into text.</li>
+            <li>Your data is <b>processed, not stored.</b> It is strictly used to perform the requested task and is immediately erased.</li>
+            <li>Your private journal entries are never used to "teach" or train global AI models.</li>
         </ul>
 
         <h2>Infrastructure</h2>
         <p>
-            I use <b>Supabase</b> to handle the heavy lifting of accounts and database storage. They are industry leaders in security. Your data is encrypted while it's moving and while it's sitting on the server.
+            I use <b>Supabase</b> to handle user accounts and database storage. They are industry leaders in security infrastructure. Your data is encrypted both while moving (in transit) and while sitting securely on the server (at rest).
         </p>
 
         <h2>Control</h2>
         <p>
-            You own everything you write. You can edit or delete any entry inside the app. If you want to delete your entire <b>TodayID</b> and every byte of data I have on the servers, just email me.
+            You own everything you write. You can completely edit or delete any entry inside the app at any time. If you want to delete your entire <b>TodayID</b> account and wipe every single byte of your data from the servers permanently, just email me.
         </p>
 
         <h2>Contact</h2>
         <p>
-            I am a solo developer. If you have any questions, you can reach me directly at: 
-            <a href="mailto:lecsusoff@gmail.com" class="text-black font-bold border-b-2 border-indigo-100 hover:border-indigo-500">lecsusoff@gmail.com</a>
+            I am a solo developer. If you have any questions, feedback, or data removal requests, you can reach me directly at: 
+            <br class="mb-2">
+            <a href="mailto:lecsusoff@gmail.com" class="text-indigo-600 font-bold border-b-2 border-indigo-100 hover:border-indigo-500 transition-colors">lecsusoff@gmail.com</a>
         </p>
 
         <div class="footer">

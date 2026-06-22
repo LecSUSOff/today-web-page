@@ -3,212 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="page-title">Today | Reinventing Your Journaling Experience</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
+    <title>Today — Reinventing the Journaling Experience</title>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #fafafa; color: #1a1a1a; letter-spacing: -0.01em; overflow-x: hidden; }
-        .hero-title { letter-spacing: -0.05em; line-height: 0.85; }
-        .btn-indigo { background-color: #3F51B5; transition: all 0.2s ease; }
-        .btn-indigo:hover { background-color: #303F9F; transform: translateY(-1px); }
-        .mission-badge { border: 1px solid #3F51B5; color: #3F51B5; }
-        
-        /* Spotlight Effect */
-        #spotlight {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9999;
-            background: radial-gradient(circle 200px at var(--x) var(--y), rgba(63, 81, 181, 0.04), transparent 100%);
+        :root {
+            --bg-color: #0b0c10;
+            --text-color: #f5f5f7;
+            --accent-color: #6366f1;
+            --accent-gradient: linear-gradient(135deg, #6366f1, #a855f7);
+            --card-bg: #16181f;
+            --text-muted: #94a3b8;
         }
 
-        /* Reveal Animation */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-        .lang-switch { cursor: pointer; font-size: 0.75rem; font-weight: 800; opacity: 0.3; transition: all 0.2s; }
-        .lang-switch.active { opacity: 1; color: #3F51B5; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-        /* Swiper Fixes */
-        .swiper { width: 100%; padding-bottom: 60px; }
-        .swiper-slide { width: 100%; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
-        .app-mockup { width: 100%; height: auto; border-radius: 20px; }
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 10%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .btn-download {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-download:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 5rem 10% 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            line-height: 1.15;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Video Showcase */
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #000;
+            margin-bottom: 5rem;
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        /* Problem vs Solution */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 4rem 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .comparison-card {
+            padding: 2.5rem;
+            border-radius: 16px;
+        }
+
+        .comparison-card.old-way {
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid rgba(239, 68, 68, 0.1);
+        }
+
+        .comparison-card.new-way {
+            background: rgba(34, 197, 94, 0.05);
+            border: 1px solid rgba(34, 197, 94, 0.1);
+        }
+
+        .comparison-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .comparison-card ul {
+            list-style: none;
+        }
+
+        .comparison-card li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-row {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            margin-bottom: 6rem;
+        }
+
+        .feature-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .feature-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .feature-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .feature-image img {
+            max-width: 100%;
+            max-height: 450px;
+            border-radius: 14px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 10% 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .feature-row { flex-direction: column !important; gap: 2rem; text-align: center; }
+            nav { padding: 1rem 5%; }
+        }
     </style>
 </head>
-<body class="antialiased">
-    <div id="spotlight" class="hidden md:block"></div>
+<body>
 
-    <!-- Mobile Sticky Bar -->
-    <div id="mobile-bar" class="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-gray-100 p-4 flex items-center justify-between z-[100] md:hidden translate-y-full transition-transform duration-500">
-        <div class="flex items-center gap-2">
-            <img src="logo.png" class="w-6 h-6">
-            <span class="font-bold text-sm tracking-tight">Today</span>
-        </div>
-        <a href="app-release.apk" class="bg-indigo-600 text-white px-5 py-2 rounded-xl text-xs font-bold shadow-lg shadow-indigo-200">Download APK</a>
-    </div>
-
-    <nav class="max-w-5xl mx-auto px-6 py-8 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-            <img src="logo.png" alt="Today Logo" class="w-7 h-7">
-            <span class="font-bold text-lg tracking-tight">Today</span>
-        </div>
-        <div class="flex items-center gap-4">
-            <div class="flex gap-2 items-center bg-gray-100 px-3 py-1.5 rounded-full mr-2">
-                <button onclick="setLanguage('en')" id="lang-en" class="lang-switch">EN</button>
-                <button onclick="setLanguage('ru')" id="lang-ru" class="lang-switch">RU</button>
-            </div>
-            <a href="privacy.html" data-i18n="nav-privacy" class="text-sm font-medium text-neutral-400 hover:text-black">Privacy</a>
-        </div>
+    <nav>
+        <a href="#" class="logo">
+            <img src="logo.png" alt="Today App Logo">
+            <span>Today</span>
+        </a>
+        <a href="app-release.apk" class="btn-download" download>Download App</a>
     </nav>
 
-    <main class="max-w-5xl mx-auto px-6">
-        <section class="reveal pt-12">
-            <div class="mb-10">
-                <span data-i18n="mission-badge" class="mission-badge px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest">Mission</span>
-                <p id="mission-text" class="mt-4 text-indigo-600 font-bold text-lg md:text-2xl tracking-tight italic leading-tight"></p>
+    <section class="hero">
+        <h1>Reinventing the<br>journaling experience</h1>
+        <p>A secure, clean, and completely intuitive way to track your daily goals and preserve your life's memories with power of AI.</p>
+        <a href="app-release.apk" class="btn-download" style="font-size: 1.1rem; padding: 1rem 2.5rem; margin-bottom: 3.5rem;" download>Get Today for Android</a>
+        
+        <div class="video-container">
+            <video controls poster="pictures/thumbnail.png">
+                <source src="presentation.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+    <section class="comparison-grid">
+        <div class="comparison-card old-way">
+            <h3 style="color: #ef4444;">Modern Journaling is Broken</h3>
+            <ul>
+                <li>❌ <strong>Insecure:</strong> Left exposed to prying eyes</li>
+                <li>❌ <strong>Cluttered:</strong> Hard to navigate bad designs</li>
+                <li>❌ <strong>Messy:</strong> Notes scattered everywhere</li>
+                <li>❌ <strong>Outdated:</strong> Doesn't match modern life</li>
+            </ul>
+        </div>
+        <div class="comparison-card new-way">
+            <h3 style="color: #22c55e;">Today Changes Everything</h3>
+            <ul>
+                <li>✅ <strong>Secure:</strong> Protected by AppLock biometrics</li>
+                <li>✅ <strong>Clean:</strong> Minimum UI clutter, max focus</li>
+                <li>✅ <strong>Intuitive:</strong> AI builds titles and text out of your intent</li>
+                <li>✅ <strong>Modern:</strong> Fluid cross-device synced structure</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="features-header">
+            <h2>Everything you need. At a glance.</h2>
+            <p style="color: var(--text-muted);">Crafted beautifully to make tracking memories second nature.</p>
+        </div>
+
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Track Your Daily Goals</h3>
+                <p>Add and tick off your goals directly on your primary feed dashboard. Keeping your timeline simple ensures you prioritize what matters daily.</p>
             </div>
-            <h1 id="hero-title-main" class="hero-title text-7xl md:text-9xl font-black mb-10"></h1>
-            <p id="hero-subtitle" class="text-xl md:text-2xl text-neutral-500 font-medium leading-tight mb-12 max-w-2xl"></p>
-            <a href="app-release.apk" data-i18n="get-apk" class="btn-indigo text-white px-10 py-5 rounded-2xl font-bold text-lg shadow-xl inline-block">Get the APK</a>
-        </section>
-
-        <section class="mt-20 overflow-hidden reveal">
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="pictures/today_tab.png" class="app-mockup"></div>
-                    <div class="swiper-slide"><img src="pictures/dark_mode_today_tab.png" class="app-mockup"></div>
-                    <div class="swiper-slide"><img src="pictures/calendar_tab.png" class="app-mockup"></div>
-                    <div class="swiper-slide"><img src="pictures/history_tab.png" class="app-mockup"></div>
-                </div>
+            <div class="feature-image">
+                <img src="pictures/today_tab.png" alt="Today Goals Dashboard">
             </div>
-        </section>
+        </div>
 
-        <section class="py-32 grid md:grid-cols-2 gap-16 reveal border-t border-gray-100">
-            <div class="space-y-16">
-                <div class="border-l-4 border-indigo-600 pl-8">
-                    <h3 data-i18n="feat-1-title" class="text-2xl font-bold mb-3 tracking-tight"></h3>
-                    <p data-i18n="feat-1-desc" class="text-neutral-500 leading-relaxed text-lg"></p>
-                </div>
-                <div class="border-l-4 border-neutral-200 pl-8">
-                    <h3 data-i18n="feat-2-title" class="text-2xl font-bold mb-3 tracking-tight"></h3>
-                    <p data-i18n="feat-2-desc" class="text-neutral-500 leading-relaxed text-lg"></p>
-                </div>
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Powerful AI Capabilities</h3>
+                <p>Transform your live voice recordings straight into complex typed text notes. The built-in intelligence extracts core context, summaries, and formats it cleanly with custom matching titles.</p>
             </div>
-            <div class="space-y-16">
-                <div class="border-l-4 border-neutral-200 pl-8">
-                    <h3 data-i18n="feat-3-title" class="text-2xl font-bold mb-3 tracking-tight"></h3>
-                    <p data-i18n="feat-3-desc" class="text-neutral-500 leading-relaxed text-lg"></p>
-                </div>
-                <div class="border-l-4 border-neutral-200 pl-8">
-                    <h3 data-i18n="feat-4-title" class="text-2xl font-bold mb-3 tracking-tight"></h3>
-                    <p data-i18n="feat-4-desc" class="text-neutral-500 leading-relaxed text-lg"></p>
-                </div>
+            <div class="feature-image">
+                <img src="pictures/at_a_glance.png" alt="AI Feature Overview">
             </div>
-        </section>
+        </div>
 
-        <section class="py-24 border-t border-neutral-100 reveal">
-            <div class="max-w-2xl">
-                <p id="founder-quote" class="text-3xl font-semibold italic text-neutral-800 leading-snug"></p>
-                <div class="mt-10 flex items-center gap-4">
-                    <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg text-lg">L</div>
-                    <div>
-                        <p class="font-bold text-sm">lecsusoff</p>
-                        <p data-i18n="founder-title" class="text-xs text-neutral-400 font-medium"></p>
-                    </div>
-                </div>
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Search Anything Instantly</h3>
+                <p>Never lose an active memory again. Look up old milestones, event details, or emotional breakthroughs instantly with smart chronological tags and live filtered keywords using the dedicated History layout.</p>
             </div>
-        </section>
+            <div class="feature-image">
+                <img src="pictures/history_tab.png" alt="Memory Timeline Search Grid">
+            </div>
+        </div>
 
-        <footer class="py-20 border-t border-neutral-100 flex justify-between items-center text-[10px] font-black text-neutral-300 uppercase tracking-[0.2em]">
-            <span data-i18n="footer-copy">© 2026 Today Journal</span>
-            <a href="app-release.apk" class="text-indigo-600 underline">Get APK</a>
-        </footer>
-    </main>
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Complete Calendar View</h3>
+                <p>Step through your past days comfortably. Click any specific date frame to track what occurred, goals accomplished, or browse your custom memory streams step-by-step.</p>
+            </div>
+            <div class="feature-image">
+                <img src="pictures/calendar_tab.png" alt="Calendar interface view">
+            </div>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        const translations = {
-            en: {
-                "page-title": "Today | Reinventing Your Journaling Experience",
-                "nav-privacy": "Privacy",
-                "mission-badge": "Mission",
-                "mission-text": '"Today, <span class="text-black">today</span> will reinvent your journaling experience."',
-                "hero-title": 'Your life is worth <br><span style="color: #3F51B5;">repeating.</span>',
-                "hero-subtitle": 'Most journals store memories just to bury them. <span class="text-black font-semibold">Today</span> is built to resurface your past at the exact moment you need to see it.',
-                "get-apk": "Get the APK",
-                "feat-1-title": "Anniversary Loop",
-                "feat-1-desc": "Recurrence is built in. Memories resurface automatically on the same date every year.",
-                "feat-2-title": "The Clean Slate",
-                "feat-2-desc": "Wipe your daily board every night so your mind starts fresh every day.",
-                "feat-3-title": "TodayID Identity",
-                "feat-3-desc": "Encryption by default. Sign in on any phone and your history follows you instantly.",
-                "feat-4-title": "Independent Soft",
-                "feat-4-desc": "No data mining, no noise. Independent software built for people who value their time. Built by lecsusoff.",
-                "founder-quote": '"I built Today because I was tired of burying my wins in static notes. Seeing your growth recur changes your day."',
-                "founder-title": "Alexey Zukovsky, Founder",
-                "footer-copy": "© 2026 Today Journal • Flutter + Supabase"
-            },
-            ru: {
-                "page-title": "Today | Переосмысление личного дневника",
-                "nav-privacy": "Приватность",
-                "mission-badge": "Миссия",
-                "mission-text": '«Сегодня <span class="text-black">today</span> полностью изменит ваш подход к ведению дневника».',
-                "hero-title": 'Ваша жизнь стоит того, <br><span style="color: #3F51B5;">чтобы её помнить.</span>',
-                "hero-subtitle": 'Записи в дневниках постоянно теряются. <span class="text-black font-semibold">Today</span> выносит ваше прошлое на поверхность именно тогда, когда оно вам нужно.',
-                "get-apk": "Скачать APK",
-                "feat-1-title": "Петля Юбилеев",
-                "feat-1-desc": "Память запрограммирована вернуться на ту же дату каждый год. История сама находит вас.",
-                "feat-2-title": "Чистый лист",
-                "feat-2-desc": "Стирай цели каждый вечер одной кнопкой. Утро начинается с чистого экрана.",
-                "feat-3-title": "Личность TodayID",
-                "feat-3-desc": "Мы шифруем данные на каждом этапе. Войди на любом устройстве, и вся твоя история вернется мгновенно.",
-                "feat-4-title": "Никакого мусора",
-                "feat-4-desc": "Никакой рекламы и слежки. Это софт для тех, кто ценит свое время. Сделано lecsusoff.",
-                "founder-quote": '«Я создал Today, потому что устал хоронить свои победы в обычных заметках. Повторение успехов меняет продуктивность сегодня».',
-                "founder-title": "Алексей Жуковский, Основатель",
-                "footer-copy": "© 2026 Today Journal • Flutter + Supabase"
-            }
-        };
+        <div class="feature-row">
+            <div class="feature-text">
+                <h3>Truly Custom Themes</h3>
+                <p>Make your digital journal look explicitly yours. Toggle natively fluid light and beautiful dark settings layouts designed around premium minimalist system visual guidelines.</p>
+            </div>
+            <div class="feature-image">
+                <img src="pictures/dark_mode_today_tab.png" alt="Custom dark mode dashboard styling">
+            </div>
+        </div>
+    </section>
 
-        function setLanguage(lang) {
-            localStorage.setItem('preferred-lang', lang);
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
-            });
-            document.getElementById('mission-text').innerHTML = translations[lang]["mission-text"];
-            document.getElementById('hero-title-main').innerHTML = translations[lang]["hero-title"];
-            document.getElementById('hero-subtitle').innerHTML = translations[lang]["hero-subtitle"];
-            document.getElementById('founder-quote').innerHTML = translations[lang]["founder-quote"];
-            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-            document.getElementById('lang-ru').classList.toggle('active', lang === 'ru');
-        }
+    <footer>
+        <p>&copy; 2026 Today App. All rights reserved.</p>
+        <p style="margin-top: 10px;">
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="successs.html">Download Success</a>
+        </p>
+    </footer>
 
-        const savedLang = localStorage.getItem('preferred-lang') || (navigator.language.startsWith('ru') ? 'ru' : 'en');
-        setLanguage(savedLang);
-
-        // Spotlight
-        window.addEventListener('mousemove', e => {
-            document.body.style.setProperty('--x', e.clientX + 'px');
-            document.body.style.setProperty('--y', e.clientY + 'px');
-        });
-
-        // Mobile Bar Reveal
-        window.addEventListener('scroll', () => {
-            const bar = document.getElementById('mobile-bar');
-            if (window.scrollY > 400) bar.classList.remove('translate-y-full');
-            else bar.classList.add('translate-y-full');
-        });
-
-        // Reveal Observer
-        const obs = new IntersectionObserver(ents => {
-            ents.forEach(e => { if (ents[0].isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-        new Swiper(".mySwiper", { centeredSlides: true, slidesPerView: "auto", spaceBetween: 40, loop: true, grabCursor: true, autoplay: { delay: 4000 } });
-    </script>
 </body>
 </html>
