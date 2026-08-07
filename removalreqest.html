@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Today App - Account & Data Deletion Request</title>
+  <style>
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+      max-width: 580px; 
+      margin: 40px auto; 
+      padding: 0 20px; 
+      color: #222; 
+      line-height: 1.6; 
+    }
+    h1 { font-size: 24px; color: #111; }
+    .card {
+      background: #f8f9fa;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    label { display: block; margin-top: 12px; font-weight: 600; font-size: 14px; }
+    input { 
+      width: 100%; 
+      padding: 10px; 
+      margin-top: 6px; 
+      border: 1px solid #ccc; 
+      border-radius: 6px; 
+      box-sizing: border-box; 
+      font-size: 15px;
+    }
+    button { 
+      background-color: #dc3545; 
+      color: white; 
+      border: none; 
+      padding: 12px 20px; 
+      font-size: 16px; 
+      font-weight: 600;
+      border-radius: 6px; 
+      cursor: pointer; 
+      margin-top: 20px; 
+      width: 100%; 
+    }
+    button:hover { background-color: #bb2d3b; }
+    .fallback-box {
+      display: none;
+      background: #fff3cd;
+      border: 1px solid #ffeba2;
+      color: #664d03;
+      padding: 16px;
+      border-radius: 6px;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .fallback-box code {
+      background: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid #edd585;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Delete Your Today Account & Data</h1>
+  <p>To confirm your identity and prevent unauthorized requests, account deletion requests must be sent directly from the email address associated with your <strong>Today</strong> account.</p>
+
+  <div class="card">
+    <label for="userEmail">Your Account Email</label>
+    <input type="email" id="userEmail" placeholder="your-email@example.com" required>
+
+    <label for="username">Username / Account ID (Optional)</label>
+    <input type="text" id="username" placeholder="Your username in Today">
+
+    <button onclick="handleDeletionRequest()">Open Email App to Request Deletion</button>
+  </div>
+
+  <div id="fallbackNotice" class="fallback-box">
+    <strong>Mail client didn't open?</strong>
+    <p>Please send an email manually using these details from your registered account email:</p>
+    <ul>
+      <li><strong>To:</strong> <code>lecsusoff@gmail.com</code></li>
+      <li><strong>Subject:</strong> <code>Account Deletion Request - Today App</code></li>
+      <li><strong>Body:</strong> <span id="manualBodyText">Please delete my Today account and associated data.</span></li>
+    </ul>
+  </div>
+
+  <script>
+    function handleDeletionRequest() {
+      const emailInput = document.getElementById('userEmail').value.trim();
+      const usernameInput = document.getElementById('username').value.trim();
+
+      if (!emailInput) {
+        alert('Please enter your account email address first.');
+        return;
+      }
+
+      const recipient = "lecsusoff@gmail.com";
+      const subject = encodeURIComponent("Account Deletion Request - Today App");
+      
+      let bodyText = `Hello,\n\nI request the permanent deletion of my Today account and all associated data.\n\nAccount Email: ${emailInput}`;
+      if (usernameInput) {
+        bodyText += `\nUsername/ID: ${usernameInput}`;
+      }
+      bodyText += `\n\nThank you.`;
+
+      const mailtoUrl = `mailto:${recipient}?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+
+      // Update manual fallback block in case mailto fails
+      document.getElementById('manualBodyText').innerText = bodyText.replace(/\n/g, " ");
+      document.getElementById('fallbackNotice').style.display = 'block';
+
+      // Attempt to launch the system's email client
+      window.location.href = mailtoUrl;
+    }
+  </script>
+
+</body>
+</html>
